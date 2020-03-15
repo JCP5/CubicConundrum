@@ -58,3 +58,9 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+*.meta
+*.meta
+/LightPuzzleGame/Library
+/LightPuzzleGame/Logs
+/LightPuzzleGame/Library/Artifacts
+/LightPuzzleGame/Library/AnnotationManager
