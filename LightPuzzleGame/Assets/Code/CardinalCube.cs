@@ -13,7 +13,7 @@ public class CardinalCube : Cube
     public override void FindNext()
     {
         RaycastHit hit;
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 5; i++)
         {
             switch (i)
             {
@@ -23,7 +23,7 @@ public class CardinalCube : Cube
                         if (hit.collider.TryGetComponent(out Cube c))
                         {
                             //Debug.Log(c.name);
-                            c.ChangeEmission();
+                            c.FlipOn();
                         }
                     }
                     break;
@@ -34,7 +34,7 @@ public class CardinalCube : Cube
                         if (hit.collider.TryGetComponent(out Cube c))
                         {
                             //Debug.Log(c.name);
-                            c.ChangeEmission();
+                            c.FlipOn();
                         }
                     }
                     break;
@@ -45,7 +45,7 @@ public class CardinalCube : Cube
                         if (hit.collider.TryGetComponent(out Cube c))
                         {
                             //Debug.Log(c.name);
-                            c.ChangeEmission();
+                            c.FlipOn();
                         }
                     }
                     break;
@@ -56,9 +56,13 @@ public class CardinalCube : Cube
                         if (hit.collider.TryGetComponent(out Cube c))
                         {
                             //Debug.Log(c.name);
-                            c.ChangeEmission();
+                            c.FlipOn();
                         }
                     }
+                    break;
+
+                case (4):
+                    CheckWin();
                     break;
             }
         }

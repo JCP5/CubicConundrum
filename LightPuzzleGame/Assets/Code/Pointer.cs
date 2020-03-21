@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Pointer : MonoBehaviour
 {
@@ -29,8 +30,9 @@ public class Pointer : MonoBehaviour
             {
                 if (hit.collider.TryGetComponent(out Cube c))
                 {
+                    LevelManager.levelManager.AddNumOfTaps();
                     //Debug.Log(c.name);
-                    c.ChangeEmission();
+                    c.FlipOn();
                     c.FindNext();
                 }
             }

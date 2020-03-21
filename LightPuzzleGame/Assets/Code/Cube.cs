@@ -15,7 +15,6 @@ public class Cube : MonoBehaviour
         mat.EnableKeyword("_EMISSION");
 
         LevelManager.levelManager.winEvent += OnWin;
-        LevelManager.levelManager.AddCube();
     }
 
     public virtual void FindNext()
@@ -23,24 +22,46 @@ public class Cube : MonoBehaviour
 
     }
 
-    public void ChangeEmission()
+    public void FlipOn()
     {
         on = !on;
-        if (on)
+        ChangeEmission();
+        LevelManager.levelManager.UpdateCubes(on);
+    }
+
+    public void ChangeEmission()
+    {
+        try
         {
-            LevelManager.levelManager.AddOnCubes();
-            mat.SetColor("_EmissionColor", onColor);
+            if (on)
+            {
+                mat.SetColor("_EmissionColor", onColor);
+            }
+            else
+            {
+                mat.SetColor("_EmissionColor", Color.black);
+            }
         }
-        else
+        catch
         {
-            LevelManager.levelManager.MinusOnCubes();
-            mat.SetColor("_EmissionColor", Color.black);
+            mat = this.GetComponent<Renderer>().material;
+            ChangeEmission();
         }
+    }
+
+    public void TurnOff()
+    {
+        on = false;
+        mat.SetColor("_EmissionColor", Color.black);
+    }
+
+    public void CheckWin()
+    {
+        LevelManager.levelManager.CheckWin();
     }
 
     public void OnWin()
     {
         this.enabled = false;
-        Debug.Log("You win");
     }
 }
