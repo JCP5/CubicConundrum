@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Pointer : MonoBehaviour
 {
+    public bool testingMode;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +15,7 @@ public class Pointer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 || testingMode == true)
         {
             ShootRay();
         }
@@ -22,18 +23,39 @@ public class Pointer : MonoBehaviour
 
     void ShootRay()
     {
-        if (Input.GetTouch(0).phase == TouchPhase.Began)
+        if (testingMode == false)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
-                if (hit.collider.TryGetComponent(out Cube c))
+                Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
                 {
-                    LevelManager.levelManager.AddNumOfTaps();
-                    //Debug.Log(c.name);
-                    c.FlipOn();
-                    c.FindNext();
+                    if (hit.collider.TryGetComponent(out Cube c))
+                    {
+                        LevelManager.levelManager.AddNumOfTaps();
+                        //Debug.Log(c.name);
+                        c.FlipOn();
+                        c.FindNext();
+                    }
+                }
+            }
+        }
+        else if (testingMode == true)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.collider.TryGetComponent(out Cube c))
+                    {
+                        LevelManager.levelManager.AddNumOfTaps();
+                        //Debug.Log(c.name);
+                        c.FlipOn();
+                        c.FindNext();
+                    }
                 }
             }
         }

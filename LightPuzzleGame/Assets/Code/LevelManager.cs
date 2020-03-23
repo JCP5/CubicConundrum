@@ -52,6 +52,7 @@ public class LevelManager : MonoBehaviour
 
         cubeCount = cubesInLevel.Count;
         IntializeCubeStartStates();
+        InitializeSolutionPositions();
         CheckTutorial();
     }
 
@@ -62,6 +63,18 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < cubesInLevel.Count; i++)
         {
             cubeStartStates[i] = cubesInLevel[i].on;
+        }
+    }
+
+    void InitializeSolutionPositions()
+    {
+        foreach(Transform t in solution.GetComponentInChildren<Transform>())
+        {
+            foreach(Cube c in cubesInLevel)
+            {
+                if (t.name == c.name)
+                    t.position = c.transform.position;
+            }
         }
     }
 
@@ -139,6 +152,12 @@ public class LevelManager : MonoBehaviour
         numOfTapsText.text = "Taps " + numOfTaps;
     }
 
+    public void ShowSolution()
+    {
+        foreach (Animator a in solution.GetComponentsInChildren<Animator>())
+            a.Play("FadeOut", -1, 0f);
+    }
+
     public void AddNumOfTaps()
     {
         numOfTaps++;
@@ -159,4 +178,6 @@ public class LevelManager : MonoBehaviour
 
         return "This puzzle can be solved in " + solutionLength + " moves";
     }
+
+
 }
