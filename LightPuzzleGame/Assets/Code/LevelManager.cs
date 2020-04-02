@@ -135,22 +135,19 @@ public class LevelManager : MonoBehaviour
 
         foreach (Cube c in FindObjectsOfType<Cube>())
         {
-            Debug.Log(c.on + ": " + c.gameObject.transform.parent.name);
             if (c.on == false)
             {
                 falseFound = true;
             }
         }
 
-        Debug.Log("False Found: " + falseFound);
-
-        /*if (falseFound == false)
+        if (falseFound == false)
         {
             winEvent();
             solvedNumberText.text = "You solved using " + numOfTaps + " taps";
             winScreen.SetActive(true);
             levelInfo.SetActive(false);
-        }*/
+        }
 
         /*Debug.Log("OffCubes is: " + offCubes);
         if (offCubes == 0 && winEvent != null)

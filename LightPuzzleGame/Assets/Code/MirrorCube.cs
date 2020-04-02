@@ -18,6 +18,8 @@ public class MirrorCube : Cube
     public void MirrorFunction(Cube origin, Vector3 originVector)
     {
         Vector3 originFlip = new Vector3(originVector.x * -1, originVector.y * -1, originVector.z * -1);
+        List<Vector3> FoundMirrorVectors = new List<Vector3>();
+        List<MirrorCube> FoundMirrors = new List<MirrorCube>();
 
         RaycastHit hit;
         for (int i = 0; i < 5; i++)
@@ -42,7 +44,8 @@ public class MirrorCube : Cube
                                     {
                                         foundMirror = true;
                                         c.FlipOn();
-                                        hit.collider.GetComponent<MirrorCube>().MirrorFunction(origin, castVector);
+                                        FoundMirrors.Add(hit.collider.GetComponent<MirrorCube>());
+                                        FoundMirrorVectors.Add(castVector);
                                     }
                                     else
                                         c.FlipOn();
@@ -67,7 +70,8 @@ public class MirrorCube : Cube
                                     {
                                         foundMirror = true;
                                         c.FlipOn();
-                                        hit.collider.GetComponent<MirrorCube>().MirrorFunction(origin, castVector);
+                                        FoundMirrors.Add(hit.collider.GetComponent<MirrorCube>());
+                                        FoundMirrorVectors.Add(castVector);
                                     }
                                     else
                                         c.FlipOn();
@@ -94,7 +98,8 @@ public class MirrorCube : Cube
                                     {
                                         foundMirror = true;
                                         c.FlipOn();
-                                        hit.collider.GetComponent<MirrorCube>().MirrorFunction(origin, castVector);
+                                        FoundMirrors.Add(hit.collider.GetComponent<MirrorCube>());
+                                        FoundMirrorVectors.Add(castVector);
                                     }
                                     else
                                         c.FlipOn();
@@ -118,7 +123,8 @@ public class MirrorCube : Cube
                                     {
                                         foundMirror = true;
                                         c.FlipOn();
-                                        hit.collider.GetComponent<MirrorCube>().MirrorFunction(origin, castVector);
+                                        FoundMirrors.Add(hit.collider.GetComponent<MirrorCube>());
+                                        FoundMirrorVectors.Add(castVector);
                                     }
                                     else
                                         c.FlipOn();
@@ -145,7 +151,8 @@ public class MirrorCube : Cube
                                     {
                                         foundMirror = true;
                                         c.FlipOn();
-                                        hit.collider.GetComponent<MirrorCube>().MirrorFunction(origin, castVector);
+                                        FoundMirrors.Add(hit.collider.GetComponent<MirrorCube>());
+                                        FoundMirrorVectors.Add(castVector);
                                     }
                                     else
                                         c.FlipOn();
@@ -169,7 +176,8 @@ public class MirrorCube : Cube
                                     {
                                         foundMirror = true;
                                         c.FlipOn();
-                                        hit.collider.GetComponent<MirrorCube>().MirrorFunction(origin, castVector);
+                                        FoundMirrors.Add(hit.collider.GetComponent<MirrorCube>());
+                                        FoundMirrorVectors.Add(castVector);
                                     }
                                     else
                                         c.FlipOn();
@@ -196,7 +204,8 @@ public class MirrorCube : Cube
                                     {
                                         foundMirror = true;
                                         c.FlipOn();
-                                        hit.collider.GetComponent<MirrorCube>().MirrorFunction(origin, castVector);
+                                        FoundMirrors.Add(hit.collider.GetComponent<MirrorCube>());
+                                        FoundMirrorVectors.Add(castVector);
                                     }
                                     else
                                         c.FlipOn();
@@ -220,7 +229,8 @@ public class MirrorCube : Cube
                                     {
                                         foundMirror = true;
                                         c.FlipOn();
-                                        hit.collider.GetComponent<MirrorCube>().MirrorFunction(origin, castVector);
+                                        FoundMirrors.Add(hit.collider.GetComponent<MirrorCube>());
+                                        FoundMirrorVectors.Add(castVector);
                                     }
                                     else
                                         c.FlipOn();
@@ -232,10 +242,16 @@ public class MirrorCube : Cube
 
                 case (4):
                     if (foundMirror == false)
+                    {
                         CheckWin();
+                    }
                     else
                     {
                         foundMirror = false;
+                        for (int j = 0; j < FoundMirrorVectors.Count; j++)
+                        {
+                            FoundMirrors[j].MirrorFunction(origin, FoundMirrorVectors[j]);
+                        }
                     }
 
                     break;
