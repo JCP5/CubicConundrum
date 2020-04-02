@@ -23,7 +23,16 @@ public class CardinalCube : Cube
                         if (hit.collider.TryGetComponent(out Cube c))
                         {
                             //Debug.Log(c.name);
-                            c.FlipOn();
+                            FireParticle(-Vector3.forward);
+
+                            if (hit.collider.GetComponent<MirrorCube>() == true)
+                            {
+                                foundMirror = true;
+                                c.FlipOn();
+                                hit.collider.GetComponent<MirrorCube>().MirrorFunction(this, Vector3.zero);
+                            }
+                            else
+                                c.FlipOn();
                         }
                     }
                     break;
@@ -34,7 +43,16 @@ public class CardinalCube : Cube
                         if (hit.collider.TryGetComponent(out Cube c))
                         {
                             //Debug.Log(c.name);
-                            c.FlipOn();
+                            FireParticle(-Vector3.right);
+
+                            if (hit.collider.GetComponent<MirrorCube>() == true)
+                            {
+                                foundMirror = true;
+                                c.FlipOn();
+                                hit.collider.GetComponent<MirrorCube>().MirrorFunction(this, Vector3.zero);
+                            }
+                            else
+                                c.FlipOn();
                         }
                     }
                     break;
@@ -45,7 +63,16 @@ public class CardinalCube : Cube
                         if (hit.collider.TryGetComponent(out Cube c))
                         {
                             //Debug.Log(c.name);
-                            c.FlipOn();
+                            FireParticle(Vector3.forward);
+
+                            if (hit.collider.GetComponent<MirrorCube>() == true)
+                            {
+                                foundMirror = true;
+                                c.FlipOn();
+                                hit.collider.GetComponent<MirrorCube>().MirrorFunction(this, Vector3.zero);
+                            }
+                            else
+                                c.FlipOn();
                         }
                     }
                     break;
@@ -56,13 +83,25 @@ public class CardinalCube : Cube
                         if (hit.collider.TryGetComponent(out Cube c))
                         {
                             //Debug.Log(c.name);
-                            c.FlipOn();
+                            FireParticle(Vector3.right);
+
+                            if (hit.collider.GetComponent<MirrorCube>() == true)
+                            {
+                                foundMirror = true;
+                                c.FlipOn();
+                                hit.collider.GetComponent<MirrorCube>().MirrorFunction(this, Vector3.zero);
+                            }
+                            else
+                                c.FlipOn();
                         }
                     }
                     break;
 
                 case (4):
-                    CheckWin();
+                    if (foundMirror == false)
+                        CheckWin();
+                    else
+                        foundMirror = false;
                     break;
             }
         }

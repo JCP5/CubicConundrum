@@ -47,6 +47,7 @@ public class LevelManager : MonoBehaviour
                 //** Use your fingers if you don't believe me
                 UpdateCubes(false);
             }
+            //Count all cubes then subtract the number of OnCubes for starting number of OffCubes
             offCubes -= startingOnCubes;
         }
 
@@ -72,7 +73,7 @@ public class LevelManager : MonoBehaviour
         {
             foreach(Cube c in cubesInLevel)
             {
-                if (t.name == c.name)
+                if (t.name == c.transform.parent.name)
                     t.position = c.transform.position;
             }
         }
@@ -130,13 +131,35 @@ public class LevelManager : MonoBehaviour
     //CheckWin() is called by each cube type after shooting all of their raycasts
     public void CheckWin()
     {
+        bool falseFound = false;
+
+        foreach (Cube c in FindObjectsOfType<Cube>())
+        {
+            Debug.Log(c.on + ": " + c.gameObject.transform.parent.name);
+            if (c.on == false)
+            {
+                falseFound = true;
+            }
+        }
+
+        Debug.Log("False Found: " + falseFound);
+
+        /*if (falseFound == false)
+        {
+            winEvent();
+            solvedNumberText.text = "You solved using " + numOfTaps + " taps";
+            winScreen.SetActive(true);
+            levelInfo.SetActive(false);
+        }*/
+
+        /*Debug.Log("OffCubes is: " + offCubes);
         if (offCubes == 0 && winEvent != null)
         {
             winEvent();
             solvedNumberText.text = "You solved using " + numOfTaps + " taps";
             winScreen.SetActive(true);
             levelInfo.SetActive(false);
-        }
+        }*/
     }
 
     public void ResetLevel()

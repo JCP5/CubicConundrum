@@ -17,51 +17,90 @@ public class InterCardinalCube : Cube
             switch (i)
             {
                 case (0):
-                    if (Physics.Raycast(this.transform.position, new Vector2(1, 1), out hit, Mathf.Infinity))
+                    if (Physics.Raycast(this.transform.position, new Vector3(1, 0, 1), out hit, Mathf.Infinity))
                     {
                         if (hit.collider.TryGetComponent(out Cube c))
                         {
                             //Debug.Log(c.name);
-                            c.FlipOn();
+                            FireParticle(new Vector3(1, 0, 1));
+
+                            if (hit.collider.GetComponent<MirrorCube>() == true)
+                            {
+                                foundMirror = true;
+                                c.FlipOn();
+                                hit.collider.GetComponent<MirrorCube>().MirrorFunction(this, Vector3.zero);
+                            }
+                            else
+                                c.FlipOn();
                         }
                     }
                     break;
 
                 case (1):
-                    if (Physics.Raycast(this.transform.position, new Vector2(1, -1), out hit, Mathf.Infinity))
+                    if (Physics.Raycast(this.transform.position, new Vector3(1, 0, -1), out hit, Mathf.Infinity))
                     {
                         if (hit.collider.TryGetComponent(out Cube c))
                         {
                             //Debug.Log(c.name);
-                            c.FlipOn();
+                            FireParticle(new Vector3(1, 0, -1));
+
+                            if (hit.collider.GetComponent<MirrorCube>() == true)
+                            {
+                                foundMirror = true;
+                                c.FlipOn();
+                                hit.collider.GetComponent<MirrorCube>().MirrorFunction(this, Vector3.zero);
+                            }
+                            else
+                                c.FlipOn();
                         }
                     }
                     break;
 
                 case (2):
-                    if (Physics.Raycast(this.transform.position, new Vector2(-1, -1), out hit, Mathf.Infinity))
+                    if (Physics.Raycast(this.transform.position, new Vector3(-1, 0, -1), out hit, Mathf.Infinity))
                     {
                         if (hit.collider.TryGetComponent(out Cube c))
                         {
                             //Debug.Log(c.name);
-                            c.FlipOn();
+                            FireParticle(new Vector3(-1, 0, -1));
+
+                            if (hit.collider.GetComponent<MirrorCube>() == true)
+                            {
+                                foundMirror = true;
+                                c.FlipOn();
+                                hit.collider.GetComponent<MirrorCube>().MirrorFunction(this, Vector3.zero);
+                            }
+                            else
+                                c.FlipOn();
                         }
                     }
                     break;
 
                 case (3):
-                    if (Physics.Raycast(this.transform.position, new Vector2(-1, 1), out hit, Mathf.Infinity))
+                    if (Physics.Raycast(this.transform.position, new Vector3(-1, 0, 1), out hit, Mathf.Infinity))
                     {
                         if (hit.collider.TryGetComponent(out Cube c))
                         {
                             //Debug.Log(c.name);
-                            c.FlipOn();
+                            FireParticle(new Vector3(-1, 0, 1));
+
+                            if (hit.collider.GetComponent<MirrorCube>() == true)
+                            {
+                                foundMirror = true;
+                                c.FlipOn();
+                                hit.collider.GetComponent<MirrorCube>().MirrorFunction(this, Vector3.zero);
+                            }
+                            else
+                                c.FlipOn();
                         }
                     }
                     break;
 
                 case (4):
-                    CheckWin();
+                    if (foundMirror == false)
+                        CheckWin();
+                    else
+                        foundMirror = false;
                     break;
             }
         }
