@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -9,8 +10,10 @@ public class LevelManager : MonoBehaviour
     public delegate void Win();
     public event Win winEvent;
     public bool tutorial = false;
-    public Text numOfTapsText, solvedNumberText, solvableText;
+    public Text numOfTapsText, solvedNumberText, solvableText, levelText;
     int startingOnCubes;
+
+    public GameObject ambience;
 
     [SerializeField]
     bool[] cubeStartStates;
@@ -31,6 +34,11 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
+        if (FindObjectOfType<Ambience>() == false)
+        {
+            Instantiate(ambience, Vector3.zero, Quaternion.identity);
+        }
+
         if (cubesInLevel.Count < 1)
         {
             foreach (Cube c in FindObjectsOfType<Cube>())
@@ -50,6 +58,8 @@ public class LevelManager : MonoBehaviour
             //Count all cubes then subtract the number of OnCubes for starting number of OffCubes
             offCubes -= startingOnCubes;
         }
+
+        levelText.text = SceneManager.GetActiveScene().buildIndex.ToString();
 
         cubeCount = cubesInLevel.Count;
         IntializeCubeStartStates();
@@ -96,7 +106,9 @@ public class LevelManager : MonoBehaviour
     void EnableCubes()
     {
         foreach (Cube c in cubesInLevel)
-            c.enabled = true;
+        {
+            c.GetComponent<BoxCollider>().enabled = true;
+        }
     }
 
     void EnableLevelInfo()

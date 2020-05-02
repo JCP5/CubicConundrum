@@ -13,6 +13,8 @@ public class CardinalCube : Cube
     public override void FindNext()
     {
         RaycastHit hit;
+        List<MirrorCube> FoundMirrors = new List<MirrorCube>();
+
         for (int i = 0; i < 5; i++)
         {
             switch (i)
@@ -29,7 +31,7 @@ public class CardinalCube : Cube
                             {
                                 foundMirror = true;
                                 c.FlipOn();
-                                hit.collider.GetComponent<MirrorCube>().MirrorFunction(this, Vector3.zero);
+                                FoundMirrors.Add(hit.collider.GetComponent<MirrorCube>());
                             }
                             else
                                 c.FlipOn();
@@ -49,7 +51,7 @@ public class CardinalCube : Cube
                             {
                                 foundMirror = true;
                                 c.FlipOn();
-                                hit.collider.GetComponent<MirrorCube>().MirrorFunction(this, Vector3.zero);
+                                FoundMirrors.Add(hit.collider.GetComponent<MirrorCube>());
                             }
                             else
                                 c.FlipOn();
@@ -69,7 +71,7 @@ public class CardinalCube : Cube
                             {
                                 foundMirror = true;
                                 c.FlipOn();
-                                hit.collider.GetComponent<MirrorCube>().MirrorFunction(this, Vector3.zero);
+                                FoundMirrors.Add(hit.collider.GetComponent<MirrorCube>());
                             }
                             else
                                 c.FlipOn();
@@ -89,7 +91,7 @@ public class CardinalCube : Cube
                             {
                                 foundMirror = true;
                                 c.FlipOn();
-                                hit.collider.GetComponent<MirrorCube>().MirrorFunction(this, Vector3.zero);
+                                FoundMirrors.Add(hit.collider.GetComponent<MirrorCube>());
                             }
                             else
                                 c.FlipOn();
@@ -101,7 +103,13 @@ public class CardinalCube : Cube
                     if (foundMirror == false)
                         CheckWin();
                     else
+                    {
                         foundMirror = false;
+                        for (int j = 0; j < FoundMirrors.Count; j++)
+                        {
+                            FoundMirrors[j].MirrorFunction(this, Vector3.zero);
+                        }
+                    }
                     break;
             }
         }

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class SceneNavigation : MonoBehaviour
 {
+    [SerializeField]
+    GameObject about, menubuttons;
+
     private void Start()
     {
         if (this.gameObject.tag == "LevelSelectButton")
@@ -14,13 +17,25 @@ public class SceneNavigation : MonoBehaviour
         }
     }
 
-    public void TestFunction(string s)
+    public void About()
     {
-        Debug.Log(s);
+        menubuttons.SetActive(false);
+        about.SetActive(true);
+    }
+
+    public void BackFromAbout()
+    {
+        about.SetActive(false);
+        menubuttons.SetActive(true);
     }
 
     public void NextScene()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            this.GetComponent<AudioSource>().Play();
+        }
+
         int index = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(index);
     }

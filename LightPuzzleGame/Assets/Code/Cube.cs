@@ -9,6 +9,8 @@ public class Cube : MonoBehaviour
     public bool on = false;
     public GameObject particleShot;
     public bool foundMirror = false;
+    public int numOfFlips = 0;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     public void Start()
@@ -16,6 +18,7 @@ public class Cube : MonoBehaviour
         mat = this.GetComponent<Renderer>().material;
         mat.EnableKeyword("_EMISSION");
 
+        audioSource = this.GetComponent<AudioSource>();
         LevelManager.levelManager.winEvent += OnWin;
     }
 
@@ -26,6 +29,7 @@ public class Cube : MonoBehaviour
 
     public void FlipOn()
     {
+        numOfFlips++;
         on = !on;
         ChangeEmission();
         LevelManager.levelManager.UpdateCubes(on);
@@ -66,6 +70,8 @@ public class Cube : MonoBehaviour
 
     public void CheckWin()
     {
+        audioSource.Stop();
+        audioSource.Play();
         LevelManager.levelManager.CheckWin();
     }
 

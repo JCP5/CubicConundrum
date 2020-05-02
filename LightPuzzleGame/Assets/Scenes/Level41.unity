@@ -350,6 +350,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3787931959112104214, guid: ff5918c287e87734082b1f74e35718ae,
+        type: 3}
+      propertyPath: tutorialPages.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787931959112104214, guid: ff5918c287e87734082b1f74e35718ae,
+        type: 3}
+      propertyPath: tutorialPages.Array.data[0]
+      value: Congratulations on your promotion
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787931959112104214, guid: ff5918c287e87734082b1f74e35718ae,
+        type: 3}
+      propertyPath: tutorialPages.Array.data[1]
+      value: Agent 665 thanks you for your guidance back to our world
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787931959112104214, guid: ff5918c287e87734082b1f74e35718ae,
+        type: 3}
+      propertyPath: tutorialPages.Array.data[2]
+      value: however
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787931959112104214, guid: ff5918c287e87734082b1f74e35718ae,
+        type: 3}
+      propertyPath: tutorialPages.Array.data[3]
+      value: with success comes new challenges
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787931959112104214, guid: ff5918c287e87734082b1f74e35718ae,
+        type: 3}
+      propertyPath: tutorialPages.Array.data[4]
+      value: these new anchors are no walk in the park but we think you are ready
+        to take them on
+      objectReference: {fileID: 0}
+    - target: {fileID: 3787931959112104214, guid: ff5918c287e87734082b1f74e35718ae,
+        type: 3}
+      propertyPath: tutorialPages.Array.data[5]
+      value: try giving the dark ones a tap for now
+      objectReference: {fileID: 0}
     - target: {fileID: 7009390469112107458, guid: ff5918c287e87734082b1f74e35718ae,
         type: 3}
       propertyPath: m_Name
@@ -414,6 +450,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009390469112107469, guid: ff5918c287e87734082b1f74e35718ae,
+        type: 3}
+      propertyPath: tutorial
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff5918c287e87734082b1f74e35718ae, type: 3}
@@ -2120,7 +2161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.5910985, y: 0, z: 0, w: 0.8065994}
-  m_LocalPosition: {x: 0, y: 23.102, z: -9.522}
+  m_LocalPosition: {x: 0, y: 13.64, z: -6.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
