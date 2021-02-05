@@ -59,7 +59,7 @@ public class Cube : MonoBehaviour
     {
         particleShot.GetComponent<ParticleShot>().particleColor = onColor;
         particleShot.GetComponent<ParticleShot>().direction = v3;
-        Instantiate(particleShot, this.transform.position, Quaternion.identity);
+        Instantiate(particleShot, this.transform.position + v3 / 2, Quaternion.identity);
     }
 
     public void TurnOff()

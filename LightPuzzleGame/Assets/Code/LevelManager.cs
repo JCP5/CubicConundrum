@@ -14,6 +14,8 @@ public class LevelManager : MonoBehaviour
     int startingOnCubes;
 
     public GameObject ambience;
+    public GameObject prefabCamera;
+    public GameObject pauseMenu;
 
     [SerializeField]
     bool[] cubeStartStates;
@@ -37,6 +39,18 @@ public class LevelManager : MonoBehaviour
         if (FindObjectOfType<Ambience>() == false)
         {
             Instantiate(ambience, Vector3.zero, Quaternion.identity);
+        }
+
+        if (FindObjectOfType<Pointer>() == true)
+        {
+            Transform oldCamera = FindObjectOfType<Pointer>().gameObject.transform;
+            Instantiate(prefabCamera, oldCamera.position, oldCamera.rotation);
+            Destroy(oldCamera.gameObject);
+        }
+
+        if (FindObjectOfType<PauseMenu>() == false)
+        {
+            Instantiate(pauseMenu, Vector3.zero, Quaternion.identity);
         }
 
         if (cubesInLevel.Count < 1)
@@ -117,6 +131,12 @@ public class LevelManager : MonoBehaviour
         levelInfo.SetActive(true);
     }
 
+    public void PauseOn()
+    {
+        pauseMenu.SetActive(true);
+        FindObjectOfType<Pointer>().enabled = false;
+    }
+
     public void UpdateCubes(bool countIf)
     {
         if (countIf)
@@ -188,6 +208,8 @@ public class LevelManager : MonoBehaviour
     {
         foreach (Animator a in solution.GetComponentsInChildren<Animator>())
             a.Play("FadeOut", -1, 0f);
+
+        //AdsManager.adsManager.RollAd();
     }
 
     public void AddNumOfTaps()

@@ -65,4 +65,9 @@ public class Pointer : MonoBehaviour
     {
         this.enabled = false;
     }
+
+    private void OnDestroy()
+    {
+        LevelManager.levelManager.winEvent -= OnWin;
+    }
 }
